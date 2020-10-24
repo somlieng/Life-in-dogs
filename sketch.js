@@ -36,14 +36,17 @@ function makeBreedlist(tempBreed){
     for(let dog of tempBreed){
         dogBreeds.push({
             name: dog.name,
-            lifespan: dog.life_span,
+            lifespan: getMaxLifespan(dog.life_span),
         });
     }
 }
 
-//get only the max lifespan
+//get only the max lifespan.
 function getMaxLifespan(lifespan){
-    
+    let temp = lifespan.split(" ");
+        //Split up the string into an array based on the space.
+    return (temp.length > 2) ? parseInt(temp[2]) : parseInt(temp[0]);
+        // if the length of array is more than 2, take the 2 thing in the array, else take the 0th index. 
 }
 
 function draw() {
