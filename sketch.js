@@ -1,4 +1,11 @@
+// JSON and API to load
 let dogNames;
+let dogBreeds;
+let lifeExpect;
+
+//variables to changes after calculation
+let numdogs = 0;
+let myDogNames = [];
 
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
@@ -6,19 +13,20 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight); 
-    //create canvas full window size
+    createCanvas(windowWidth, windowHeight); 
+        //create canvas full window size
+    numdogs = 5;
+        //how dogs can you have until you die
+    for(i = 0; i < numdogs; i++){
+        let rand = dogNames.dog_names.length;
+        let randName = random(0,rand-1);
+        myDogNames.push(dogNames.dog_names[floor(randName)]);
+    }
 }
 
 function draw() {
     background(220);
-    let rand = dogNames.dog_names.length;
-    let randName = random(0,rand-1);
-    let name = dogNames.dog_names[floor(randName)];
-    print(name);
-    print (randName);
-    text(name,100,100);
-    noLoop();
+    text(myDogNames,100,100);
 }
 
 function windowResized (){
