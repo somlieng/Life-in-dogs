@@ -1,5 +1,17 @@
 [
   {
+    "name": "Australia",
+    "total": "83.4960",
+    "male": "81.5580",
+    "female": "85.4520"
+  },
+  {
+    "name": "Italy",
+    "total": "83.5680",
+    "male": "81.3840",
+    "female": "85.5980"
+  },
+  {
     "name": "Hong Kong",
     "total": "84.8940",
     "male": "82.0020",
@@ -34,18 +46,6 @@
     "total": "83.6120",
     "male": "80.8680",
     "female": "86.3020"
-  },
-  {
-    "name": "Italy",
-    "total": "83.5680",
-    "male": "81.3840",
-    "female": "85.5980"
-  },
-  {
-    "name": "Australia",
-    "total": "83.4960",
-    "male": "81.5580",
-    "female": "85.4520"
   },
   {
     "name": "Channel Islands",

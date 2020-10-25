@@ -40,17 +40,8 @@ function setup() {
         myDogNames.push(dogNames.dog_names[floor(randName)]);
     }
     createBreedDropdown(10,10);
-    createBreedDropdown(250,10);
+    createCountryDropdown(10,50);
     
-}
-
-function createBreedDropdown(x,y){
-    breedSelector = createSelect();
-    breedSelector.position(x,y);
-    for(let i = 0; i < dogBreeds.length; i++){
-     breedSelector.option(dogBreeds[i].name);   
-    }
-    breedSelector.selected(dogBreeds[121].name);
 }
 
 //callback function for JSON call to create a new array of dog breed name and lifespan that we want
@@ -79,4 +70,22 @@ function getMaxLifespan(lifespan){
 //makes sure the window is resize automatically
 function windowResized (){
     resizeCanvas(windowWidth,windowHeight);
+}
+
+function createBreedDropdown(x,y){
+    breedSelector = createSelect();
+    breedSelector.position(x,y);
+    for(let i = 0; i < dogBreeds.length; i++){
+     breedSelector.option(dogBreeds[i].name);   
+    }
+    breedSelector.selected(dogBreeds[121].name);
+}
+
+function createCountryDropdown(x,y){
+    countrySelector = createSelect();
+    countrySelector.position(x,y);
+    for(let i = 0; i < Object.keys(lifeExpect).length; i++){
+     countrySelector.option(lifeExpect[i].name);   
+    }
+    //countrySelector.selected(liftExpect[121].name);
 }
