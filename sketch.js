@@ -1,7 +1,7 @@
 // JSON and API to load
-let dogNames;
+let dogNames = [];
 let dogBreeds = [];
-let lifeExpect;
+let lifeExpect = [];
 
 //variables to changes after calculation
 let numdogs = 0;
@@ -16,6 +16,8 @@ function preload(){
         //Loads dog names
     let tempBreed = loadJSON(dogBreedURL,makeBreedlist);
         //Loads dog breeds with a callback function to create a new array for just the information we want
+    let lifeExpectURL = "https://raw.githubusercontent.com/somlieng/Life-in-dogs/main/lifeExpectancy_2020.json";
+    lifeExpect = loadJSON(lifeExpectURL);
 }
 
 function setup() {
@@ -28,7 +30,7 @@ function setup() {
         let randName = random(0,rand-1);
         myDogNames.push(dogNames.dog_names[floor(randName)]);
     }
-    print(dogBreeds);
+    print(lifeExpect);
 }
 
 //callback function for JSON call to create a new array of dog breed name and lifespan that we want
