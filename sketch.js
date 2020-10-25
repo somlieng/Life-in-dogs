@@ -13,7 +13,9 @@ let breedSelector;
 let countrySelector;
 
 //user input
-let currentAge;
+let currentAge = 0;
+let breed = "dog";
+let country = "country";
 
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
@@ -39,9 +41,20 @@ function setup() {
         let randName = random(0,rand-1);
         myDogNames.push(dogNames.dog_names[floor(randName)]);
     }
-    createBreedDropdown(10,10);
-    createCountryDropdown(10,50);
-    
+    createDropdown(10,10,dogBreeds,breedSelector,121,breed);
+    createDropdown(10,50,lifeExpect,countrySelector,190,country);
+//    countrySelector = createSelect();
+//    countrySelector.position(10,50);
+//    for(let i = 0; i < Object.keys(lifeExpect).length; i++){
+//     countrySelector.option(lifeExpect[i].name);   
+//    }
+//    countrySelector.selected(lifeExpect[190].name);
+//    print(countrySelector.value());
+//    country = countrySelector.value();
+//    breed = breedSelector.value();
+//    country = countrySelector.value();
+    print(breedSelector.value());
+    print(countrySelector.value());
 }
 
 //callback function for JSON call to create a new array of dog breed name and lifespan that we want
@@ -62,30 +75,24 @@ function getMaxLifespan(lifespan){
         // if the length of array is more than 2, take the 2 thing in the array, else take the 0th index. 
 }
 
-//function draw() {
+function draw() {
 //    background(220);
 //    text(myDogNames,100,100);
-//}
+}
 
 //makes sure the window is resize automatically
 function windowResized (){
     resizeCanvas(windowWidth,windowHeight);
 }
 
-function createBreedDropdown(x,y){
-    breedSelector = createSelect();
-    breedSelector.position(x,y);
-    for(let i = 0; i < dogBreeds.length; i++){
-     breedSelector.option(dogBreeds[i].name);   
+function createDropdown(x,y,data,dropdown,num,output){
+    dropdown = createSelect();
+    dropdown.position(x,y);
+    for(let i = 0; i < Object.keys(data).length; i++){
+     dropdown.option(data[i].name);   
     }
-    breedSelector.selected(dogBreeds[121].name);
-}
-
-function createCountryDropdown(x,y){
-    countrySelector = createSelect();
-    countrySelector.position(x,y);
-    for(let i = 0; i < Object.keys(lifeExpect).length; i++){
-     countrySelector.option(lifeExpect[i].name);   
-    }
-    //countrySelector.selected(liftExpect[121].name);
+    dropdown.selected(data[num].name);
+    print(dropdown.value());
+    output = dropdown.value();
+    return dropdown;
 }
