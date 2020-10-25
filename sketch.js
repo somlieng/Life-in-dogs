@@ -1,11 +1,19 @@
 // JSON and API to load
-let dogNames = [];
+let dogNames = []; 
 let dogBreeds = [];
 let lifeExpect = [];
 
 //variables to changes after calculation
 let numdogs = 0;
 let myDogNames = [];
+let lifeLeft = 0;
+
+//dropdowns
+let breedSelector;
+let countrySelector;
+
+//user input
+let currentAge;
 
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
@@ -23,6 +31,7 @@ function preload(){
 function setup() {
     createCanvas(windowWidth, windowHeight); 
         //create canvas full window size
+    background(255);
     numdogs = 5;
         //how dogs can you have until you die
     for(i = 0; i < numdogs; i++){
@@ -30,7 +39,18 @@ function setup() {
         let randName = random(0,rand-1);
         myDogNames.push(dogNames.dog_names[floor(randName)]);
     }
-    print(lifeExpect);
+    createBreedDropdown(10,10);
+    createBreedDropdown(250,10);
+    
+}
+
+function createBreedDropdown(x,y){
+    breedSelector = createSelect();
+    breedSelector.position(x,y);
+    for(let i = 0; i < dogBreeds.length; i++){
+     breedSelector.option(dogBreeds[i].name);   
+    }
+    breedSelector.selected(dogBreeds[121].name);
 }
 
 //callback function for JSON call to create a new array of dog breed name and lifespan that we want
@@ -51,10 +71,10 @@ function getMaxLifespan(lifespan){
         // if the length of array is more than 2, take the 2 thing in the array, else take the 0th index. 
 }
 
-function draw() {
-    background(220);
-    text(myDogNames,100,100);
-}
+//function draw() {
+//    background(220);
+//    text(myDogNames,100,100);
+//}
 
 //makes sure the window is resize automatically
 function windowResized (){
