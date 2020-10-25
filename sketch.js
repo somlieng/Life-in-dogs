@@ -13,9 +13,7 @@ let breedSelector;
 let countrySelector;
 
 //user input
-let currentAge = 0;
-let breed = "dog";
-let country = "country";
+let currentAge;
 
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
@@ -41,18 +39,15 @@ function setup() {
         let randName = random(0,rand-1);
         myDogNames.push(dogNames.dog_names[floor(randName)]);
     }
-    createDropdown(10,10,dogBreeds,breedSelector,121,breed);
-    createDropdown(10,50,lifeExpect,countrySelector,190,country);
-//    countrySelector = createSelect();
-//    countrySelector.position(10,50);
-//    for(let i = 0; i < Object.keys(lifeExpect).length; i++){
-//     countrySelector.option(lifeExpect[i].name);   
-//    }
-//    countrySelector.selected(lifeExpect[190].name);
-//    print(countrySelector.value());
-//    country = countrySelector.value();
-//    breed = breedSelector.value();
-//    country = countrySelector.value();
+        //generate name of dogs you might have
+    breedSelector = createSelect();
+    countrySelector = createSelect();
+        //generate dropdown for breed and country
+    createDropdown(10,10,dogBreeds,breedSelector,121);
+    createDropdown(10,50,lifeExpect,countrySelector,190);
+        //customize the dropdown data
+    currentAge = createInput(" ");
+    createInputField(currentAge,10,90);
     print(breedSelector.value());
     print(countrySelector.value());
 }
@@ -85,14 +80,16 @@ function windowResized (){
     resizeCanvas(windowWidth,windowHeight);
 }
 
-function createDropdown(x,y,data,dropdown,num,output){
-    dropdown = createSelect();
+function createDropdown(x,y,data,dropdown,num){
+//    dropdown = createSelect();
     dropdown.position(x,y);
     for(let i = 0; i < Object.keys(data).length; i++){
      dropdown.option(data[i].name);   
     }
     dropdown.selected(data[num].name);
-    print(dropdown.value());
-    output = dropdown.value();
-    return dropdown;
+}
+
+function createInputField(name,x,y){
+    
+    name.position(x,y);
 }
