@@ -15,6 +15,11 @@ let countrySelector;
 //user input
 let currentAge;
 
+//color palette
+let blue = "#0624F7";
+let lightBlue = "B2BBFD";
+let darkBlue = "00094A";
+
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
         //JSON url for dog names
@@ -32,14 +37,8 @@ function setup() {
     createCanvas(windowWidth, windowHeight); 
         //create canvas full window size
     background(255);
-    numdogs = 5;
-        //how dogs can you have until you die
-    for(i = 0; i < numdogs; i++){
-        let rand = dogNames.dog_names.length;
-        let randName = random(0,rand-1);
-        myDogNames.push(dogNames.dog_names[floor(randName)]);
-    }
-        //generate name of dogs you might have
+        //make background color
+    
     breedSelector = createSelect();
     countrySelector = createSelect();
         //generate dropdown for breed and country
@@ -70,18 +69,13 @@ function getMaxLifespan(lifespan){
         // if the length of array is more than 2, take the 2 thing in the array, else take the 0th index. 
 }
 
-function draw() {
-//    background(220);
-//    text(myDogNames,100,100);
-}
-
 //makes sure the window is resize automatically
 function windowResized (){
     resizeCanvas(windowWidth,windowHeight);
 }
 
+//customize dropdown
 function createDropdown(x,y,data,dropdown,num){
-//    dropdown = createSelect();
     dropdown.position(x,y);
     for(let i = 0; i < Object.keys(data).length; i++){
      dropdown.option(data[i].name);   
@@ -89,7 +83,18 @@ function createDropdown(x,y,data,dropdown,num){
     dropdown.selected(data[num].name);
 }
 
-function createInputField(name,x,y){
-    
+//customize input field
+function createInputField(name,x,y){  
     name.position(x,y);
+}
+
+function calcDog(){
+//    numdogs = 5;
+//        //how dogs can you have until you die
+//    for(i = 0; i < numdogs; i++){
+//        let rand = dogNames.dog_names.length;
+//        let randName = random(0,rand-1);
+//        myDogNames.push(dogNames.dog_names[floor(randName)]);
+//    }
+//        //generate name of dogs you might have
 }
