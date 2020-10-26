@@ -92,7 +92,7 @@ function createDropdown(x,y,data,dropdown,num){
     for(let i = 0; i < Object.keys(data).length; i++){
      dropdown.option(data[i].name,i);   
     }
-    dropdown.selected(data[num].name);
+    dropdown.selected(data[num].name,num);
 }
 
 //customize input field
@@ -131,5 +131,14 @@ function calcDog(){
     
     text('Max life span of a '+dogBreeds[breedSelector.value()].name+' is '+dogBreeds[breedSelector.value()].lifespan+' years',10,250);
     
-    text('The lifespan of a '+gender+' person in '+lifeExpect[countrySelector.value()].name+' is '+lifeExpect[countrySelector.value()][gender]+' years',10,290);
+    text('The life expectancy of a person born '+gender+' in '+lifeExpect[countrySelector.value()].name+' is '+floor(lifeExpect[countrySelector.value()][gender])+' years',10,290);
+    
+    lifeLeft = floor(lifeExpect[countrySelector.value()][gender]) - currentAge.value();
+    //calculate how much time you have left, statistically
+    
+    text('Statistically, you have '+lifeLeft+' years left',10,330);
+    
+    numdogs = floor(lifeLeft/(dogBreeds[breedSelector.value()].lifespan));
+    
+    text('Which means you can have '+numdogs+' more '+dogBreeds[breedSelector.value()].name+'s',10,370);
 }
