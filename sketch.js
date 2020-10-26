@@ -14,14 +14,17 @@ let countrySelector;
 
 //user input
 let currentAge;
+let gender = "female"; 
 
 //button
 let calcButton;
+let femaleButton;
+let maleButton;
 
 //color palette
 let blue = "#0624F7";
-let lightBlue = "B2BBFD";
-let darkBlue = "00094A";
+let lightBlue = "#B2BBFD";
+let darkBlue = "#00094A";
 
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
@@ -41,18 +44,23 @@ function setup() {
         //create canvas full window size
     background(255);
         //make background color
-    
+    femaleButton = createButton('Female','female');
+    maleButton = createButton('Male','male');
+    genderButton(maleButton,femaleButton,10,10);
+        //make gender buttons
+    currentAge = createInput(" ");
+    createInputField(currentAge,10,50);
+        //generate input field for age
     breedSelector = createSelect();
     countrySelector = createSelect();
         //generate dropdown for breed and country
-    createDropdown(10,10,dogBreeds,breedSelector,121);
-    createDropdown(10,50,lifeExpect,countrySelector,190);
+        //generate gender buttons
+    createDropdown(10,90,lifeExpect,countrySelector,190);
+    createDropdown(10,130,dogBreeds,breedSelector,121);
         //customize the dropdown data
-    currentAge = createInput(" ");
-    createInputField(currentAge,10,90);
-        //generate input field for age
     calcButton = createButton('Calculate');
-    calcButtonCustomize(calcButton,10,130);
+    calcButtonCustomize(calcButton,10,170);
+        //generate the calculate button
 }
 
 //callback function for JSON call to create a new array of dog breed name and lifespan that we want
@@ -96,6 +104,11 @@ function createInputField(name,x,y){
 function calcButtonCustomize(button,x,y){
     button.position(x,y);
     button.mousePressed(calcDog);
+}
+
+function genderButton(male,female,x,y){
+    female.position(x,y);
+    male.position(x+60,y);
 }
 
 function calcDog(){
