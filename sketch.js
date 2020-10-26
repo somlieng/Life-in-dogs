@@ -26,6 +26,11 @@ let blue = "#0624F7";
 let lightBlue = "#B2BBFD";
 let darkBlue = "#00094A";
 
+//text and other stuff
+let title;
+let subtitle;
+let buttonPanel;
+
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
         //JSON url for dog names
@@ -44,22 +49,28 @@ function setup() {
         //create canvas full window size
     background(255);
         //make background color
+    title = createElement('h1', 'How many more dogs can you have?');
+    titleCustom(title,40,40);
+        //make title
+    subtitle = createElement('h3', 'Please enter the breed of dog your would like to have, your current age, country of birth and sex at birth:');
+    titleCustom(subtitle,40,100);
+        //make subtitle
+    buttonPanel = createDiv();
+    breedSelector = createSelect();
+    createDropdown(40,160,dogBreeds,breedSelector,121);
+        //generate and customize breed selector
+    currentAge = createInput(" ");
+    createInputField(currentAge,120,160);
+        //generate input field for age
+    countrySelector = createSelect();
+    createDropdown(160,160,lifeExpect,countrySelector,190);
+        //generate and customize country selector
     femaleButton = createButton('Female','female');
     maleButton = createButton('Male','male');
-    genderButton(maleButton,femaleButton,10,10);
+    genderButton(maleButton,femaleButton,240,160);
         //make gender buttons
-    currentAge = createInput(" ");
-    createInputField(currentAge,10,50);
-        //generate input field for age
-    breedSelector = createSelect();
-    countrySelector = createSelect();
-        //generate dropdown for breed and country
-        //generate gender buttons
-    createDropdown(10,90,lifeExpect,countrySelector,190);
-    createDropdown(10,130,dogBreeds,breedSelector,121);
-        //customize the dropdown data
     calcButton = createButton('Calculate');
-    calcButtonCustomize(calcButton,10,170);
+    calcButtonCustomize(calcButton,40,180);
         //generate the calculate button
 }
 
@@ -111,6 +122,10 @@ function genderButton(male,female,x,y){
     male.position(x+60,y);
     female.mousePressed(whichGender);
     male.mousePressed(whichGender);
+}
+
+function titleCustom(title,x,y){
+    title.position(x,y);
 }
 
 function whichGender(){
