@@ -118,14 +118,9 @@ function whichGender(){
 }
 
 function calcDog(){
-//    numdogs = 5;
-//        //how dogs can you have until you die
-//    for(i = 0; i < numdogs; i++){
-//        let rand = dogNames.dog_names.length;
-//        let randName = random(0,rand-1);
-//        myDogNames.push(dogNames.dog_names[floor(randName)]);
-//    }
-//        //generate name of dogs you might have
+    clear();
+    myDogNames = [];
+    //reset old calculations
     
     text('Gender: '+gender+' Age: '+currentAge.value()+' Country: '+countrySelector.value()+' Dog Breed:'+breedSelector.value(),10,210);
     
@@ -134,11 +129,21 @@ function calcDog(){
     text('The life expectancy of a person born '+gender+' in '+lifeExpect[countrySelector.value()].name+' is '+floor(lifeExpect[countrySelector.value()][gender])+' years',10,290);
     
     lifeLeft = floor(lifeExpect[countrySelector.value()][gender]) - currentAge.value();
-    //calculate how much time you have left, statistically
+        //calculate how much time you have left, statistically
     
     text('Statistically, you have '+lifeLeft+' years left',10,330);
     
     numdogs = floor(lifeLeft/(dogBreeds[breedSelector.value()].lifespan));
+        //how many dogs you can have until you die
     
     text('Which means you can have '+numdogs+' more '+dogBreeds[breedSelector.value()].name+'s',10,370);
+    
+    for(i = 0; i < numdogs; i++){
+        let rand = dogNames.dog_names.length;
+        let randName = random(0,rand-1);
+        myDogNames.push(dogNames.dog_names[floor(randName)]);
+    }
+        //generate name of dogs you might have
+    
+    text('Here are some ideas for dog names: '+myDogNames,10,410);
 }
