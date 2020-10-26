@@ -109,6 +109,13 @@ function calcButtonCustomize(button,x,y){
 function genderButton(male,female,x,y){
     female.position(x,y);
     male.position(x+60,y);
+    female.mousePressed(whichGender);
+    male.mousePressed(whichGender);
+}
+
+function whichGender(){
+    gender = this.value();
+    print(gender);
 }
 
 function calcDog(){
