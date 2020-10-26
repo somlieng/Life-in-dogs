@@ -14,7 +14,7 @@ let countrySelector;
 
 //user input
 let currentAge;
-let gender = "female"; 
+let gender = "female";
 
 //button
 let calcButton;
@@ -90,7 +90,7 @@ function windowResized (){
 function createDropdown(x,y,data,dropdown,num){
     dropdown.position(x,y);
     for(let i = 0; i < Object.keys(data).length; i++){
-     dropdown.option(data[i].name);   
+     dropdown.option(data[i].name,i);   
     }
     dropdown.selected(data[num].name);
 }
@@ -126,6 +126,10 @@ function calcDog(){
 //        myDogNames.push(dogNames.dog_names[floor(randName)]);
 //    }
 //        //generate name of dogs you might have
-    text.
+    
     text('Gender: '+gender+' Age: '+currentAge.value()+' Country: '+countrySelector.value()+' Dog Breed:'+breedSelector.value(),10,210);
+    
+    text('Max life span of a '+dogBreeds[breedSelector.value()].name+' is '+dogBreeds[breedSelector.value()].lifespan+' years',10,250);
+    
+    
 }
