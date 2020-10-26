@@ -115,7 +115,6 @@ function genderButton(male,female,x,y){
 
 function whichGender(){
     gender = this.value();
-    print(gender);
 }
 
 function calcDog(){
@@ -127,5 +126,6 @@ function calcDog(){
 //        myDogNames.push(dogNames.dog_names[floor(randName)]);
 //    }
 //        //generate name of dogs you might have
-    print("pressed");
+    text.
+    text('Gender: '+gender+' Age: '+currentAge.value()+' Country: '+countrySelector.value()+' Dog Breed:'+breedSelector.value(),10,210);
 }
