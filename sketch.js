@@ -15,6 +15,9 @@ let countrySelector;
 //user input
 let currentAge;
 
+//button
+let calcButton;
+
 //color palette
 let blue = "#0624F7";
 let lightBlue = "B2BBFD";
@@ -47,8 +50,9 @@ function setup() {
         //customize the dropdown data
     currentAge = createInput(" ");
     createInputField(currentAge,10,90);
-    print(breedSelector.value());
-    print(countrySelector.value());
+        //generate input field for age
+    calcButton = createButton('Calculate');
+    calcButtonCustomize(calcButton,10,130);
 }
 
 //callback function for JSON call to create a new array of dog breed name and lifespan that we want
@@ -88,6 +92,12 @@ function createInputField(name,x,y){
     name.position(x,y);
 }
 
+//customize button
+function calcButtonCustomize(button,x,y){
+    button.position(x,y);
+    button.mousePressed(calcDog);
+}
+
 function calcDog(){
 //    numdogs = 5;
 //        //how dogs can you have until you die
@@ -97,4 +107,5 @@ function calcDog(){
 //        myDogNames.push(dogNames.dog_names[floor(randName)]);
 //    }
 //        //generate name of dogs you might have
+    print("pressed");
 }
