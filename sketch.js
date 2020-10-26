@@ -131,5 +131,5 @@ function calcDog(){
     
     text('Max life span of a '+dogBreeds[breedSelector.value()].name+' is '+dogBreeds[breedSelector.value()].lifespan+' years',10,250);
     
-    
+    text('The lifespan of a '+gender+' person in '+lifeExpect[countrySelector.value()].name+' is '+lifeExpect[countrySelector.value()][gender]+' years',10,290);
 }
