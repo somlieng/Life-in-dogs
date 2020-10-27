@@ -35,6 +35,8 @@ let breedLabel;
 let countryLabel;
 let ageLabel;
 let lineMargin;
+let country;
+let expectancy;
 
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
@@ -90,7 +92,7 @@ function setup() {
     calcButton = createButton('Calculate');
     calcButtonCustomize(calcButton);
         //generate the calculate button
-     reposition();
+    reposition();
     makeLine();
         //position elements
 }
@@ -248,9 +250,10 @@ function calcDog(){
 //    text('Gender: '+gender+' Age: '+currentAge.value()+' Country: '+countrySelector.value()+' Dog Breed:'+breedSelector.value(),10,210);
 //    
 //    text('Max life span of a '+dogBreeds[breedSelector.value()].name+' is '+dogBreeds[breedSelector.value()].lifespan+' years',10,250);
-//    
-//    text('The life expectancy of a person born '+gender+' in '+lifeExpect[countrySelector.value()].name+' is '+floor(lifeExpect[countrySelector.value()][gender])+' years',10,290);
-//    
+//   
+    country = lifeExpect[countrySelector.value()].name;
+    expectancy = floor(lifeExpect[countrySelector.value()][gender]);
+
     lifeLeft = floor(lifeExpect[countrySelector.value()][gender]) - currentAge.value();
         //calculate how much time you have left, statistically
 //    
@@ -268,16 +271,22 @@ function calcDog(){
     }
         //generate name of dogs you might have
     
-    let margin = lineMargin+30;
-    let canvasSize = windowWidth - 80;
+    let lifeText = createElement('h2', 'Your life expectancy in '+country+' is '+expectancy+' years');
+    lifeText.position(40,lineMargin+30);
     
-    print("here1");
+    //    text('The life expectancy of a person born '+gender+' in '+lifeExpect[countrySelector.value()].name+' is '+floor(lifeExpect[countrySelector.value()][gender])+' years',10,290);
+//    
     
-    for(i = 0; i < numdogs; i++){
-         print("here2");
-        fill(blue);
-        square((40*i)+40+(20*i), margin, windowWidth/numdogs);
-    }
+//    let margin = lineMargin+30;
+//    let canvasSize = windowWidth - 80;
+//    
+//    print("here1");
+//    
+//    for(i = 0; i < numdogs; i++){
+//         print("here2");
+//        fill(blue);
+//        square((40*i)+40+(20*i), margin, windowWidth/numdogs);
+//    }
     
 //    text('Here are some ideas for dog names: '+myDogNames,10,410);
 }
