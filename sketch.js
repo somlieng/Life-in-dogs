@@ -100,6 +100,7 @@ function reposition(){
     let subtitleBottom = subtitle.position().y+subtitle.size().height;
     buttonPanel.position(40,subtitleBottom+30);
     inputRearrange();
+    buttonPanel.size(AUTO,divHeight);
     let panelBottom = buttonPanel.position().y+buttonPanel.size().height;
     calcButton.position(40,panelBottom+30);
 }
@@ -127,6 +128,44 @@ function inputRearrange(){
     
     femaleButton.position(countryX+countryWidth+12,24);
     maleButton.position(countryX+countryWidth+12+femaleWidth-2,24);
+    divHeight = 64;
+    
+    if(windowWidth < 960 && windowWidth > 745){
+       
+       let line2 = breedSelector.size().height+breedLabel.size().height+36;
+        
+        femaleButton.position(0,line2);
+        maleButton.position(femaleWidth-2,line2);
+        divHeight = 128;
+        
+    }
+    
+    if(windowWidth < 745 && windowWidth > 525){
+        
+        let line2 = breedSelector.size().height+breedLabel.size().height+48;
+        
+        countryLabel.position(0,line2-24);
+        countrySelector.position(0,line2);
+        femaleButton.position(countryWidth+12,line2);
+        maleButton.position(countryWidth+12+femaleWidth-2,line2);
+        divHeight = 140;
+        
+    }
+    
+    if(windowWidth < 525 && windowWidth > 320){
+        
+        let line2 = breedSelector.size().height+breedLabel.size().height+48;
+        let line3 = breedSelector.size().height+breedLabel.size().height+108;
+        
+        ageLabel.position(0,line2-24);
+        currentAge.position(0,line2);
+        countryLabel.position(ageWidth+12,line2-24);
+        countrySelector.position(ageWidth+12,line2);
+        femaleButton.position(0,line3);
+        maleButton.position(femaleWidth-2,line3);
+        divHeight = 196;
+        
+    }
 
 }
 
