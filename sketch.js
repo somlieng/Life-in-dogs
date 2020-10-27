@@ -68,7 +68,7 @@ function setup() {
         //make subtitle
     buttonPanel = createDiv();
     buttonPanel.id('buttonPanel');
-    buttonPanel.size(windowWidth-80,divHeight);
+    //buttonPanel.size(windowWidth-(sidemargin*2),divHeight);
         //make div
     breedLabel = createP('Dog breed:');
     breedLabel.parent(buttonPanel);
@@ -88,6 +88,7 @@ function setup() {
     createDropdown(lifeExpect,countrySelector,190);
         //generate and customize country selector
     countryLabel = createP('Country of birth:');
+    countryLabel.size(150);
     countryLabel.parent(buttonPanel);
     countryLabel.class('labels');
         //make breed selector label
@@ -109,7 +110,7 @@ function reposition(){
     subtitle.position(sidemargin,titleSize+100);
     let subtitleBottom = subtitle.position().y+subtitle.size().height;
     buttonPanel.position(sidemargin,subtitleBottom+40);
-    buttonPanel.size(windowWidth-80);
+    buttonPanel.size(windowWidth-sidemargin*2);
     inputRearrange();
     buttonPanel.size(AUTO,divHeight);
     let panelBottom = buttonPanel.position().y+buttonPanel.size().height;
