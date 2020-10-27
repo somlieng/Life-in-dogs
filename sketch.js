@@ -30,7 +30,6 @@ let darkBlue = "#00094A";
 let title;
 let subtitle;
 let buttonPanel;
-let divHeight = 64;
 let breedLabel;
 let countryLabel;
 let ageLabel;
@@ -40,6 +39,10 @@ let expectancy;
 let breed;
 let summaryText;
 let dogYears;
+
+//measurements
+let divHeight = 64;
+let sidemargin = 80;
 
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
@@ -65,7 +68,7 @@ function setup() {
         //make subtitle
     buttonPanel = createDiv();
     buttonPanel.id('buttonPanel');
-    buttonPanel.size(AUTO,divHeight);
+    buttonPanel.size(windowWidth-80,divHeight);
         //make div
     breedLabel = createP('Dog breed:');
     breedLabel.parent(buttonPanel);
@@ -101,18 +104,20 @@ function setup() {
 }
 
 function reposition(){
-    title.position(40,40);
+    title.position(sidemargin,sidemargin);
     let titleSize = title.size().height;
-    subtitle.position(40,titleSize+60);
+    subtitle.position(sidemargin,titleSize+100);
     let subtitleBottom = subtitle.position().y+subtitle.size().height;
-    buttonPanel.position(40,subtitleBottom+30);
+    buttonPanel.position(sidemargin,subtitleBottom+40);
+    buttonPanel.size(windowWidth-80);
     inputRearrange();
     buttonPanel.size(AUTO,divHeight);
     let panelBottom = buttonPanel.position().y+buttonPanel.size().height;
-    calcButton.position(40,panelBottom+30);
+    calcButton.position(sidemargin,panelBottom+40);
     makeLine();
     if(summaryText){
-     summaryText.position(40,lineMargin+30);   
+        summaryText.position(80,lineMargin+40);
+        summaryText.size(windowWidth-sidemargin*2);   
     }
 }
 
@@ -181,8 +186,8 @@ function inputRearrange(){
 }
 
 function makeLine(){
-    lineMargin = calcButton.size().height+calcButton.position().y+30;
-    line(40, lineMargin, windowWidth-40, lineMargin);
+    lineMargin = calcButton.size().height+calcButton.position().y+40;
+    line(sidemargin, lineMargin, windowWidth-sidemargin, lineMargin);
 }
 
 //callback function for JSON call to create a new array of dog breed name and lifespan that we want
@@ -248,6 +253,9 @@ function whichGender(){
 }
 
 function calcDog(){
+    if(summaryText){
+     summaryText.remove();   
+    }
     clear();
     myDogNames = [];
     makeLine();
@@ -280,7 +288,8 @@ function calcDog(){
         //generate name of dogs you might have
     
     summaryText = createElement('h2', 'You can have '+numdogs+' more '+breed+'s! '+breed+'s live up to '+dogYears+' years. Your life expectancy as a born '+gender+' in '+country+' is '+expectancy+' years. Which means you have around '+lifeLeft+' years to play with your dogs. Enjoy!');
-    summaryText.position(40,lineMargin+30);
+    summaryText.position(80,lineMargin+40);
+    summaryText.size(windowWidth-sidemargin*2);
     //    text('The life expectancy of a person born '+gender+' in '+lifeExpect[countrySelector.value()].name+' is '+floor(lifeExpect[countrySelector.value()][gender])+' years',10,290);
 //    
     

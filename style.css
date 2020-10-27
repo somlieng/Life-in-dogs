@@ -15,7 +15,7 @@ h1 {
     font-weight: 600;
     margin: inherit;
     color: #00094A;
-    width: 90%;
+    width: 80%;
     height: auto;
 }
 
@@ -23,7 +23,7 @@ h3 {
     font-family: 'Open Sans', sans-serif;
     font-size: 24px;
     color: #474850;
-    width: 90%;
+    width: 80%;
     height:auto;
     margin: inherit;
 }
@@ -34,7 +34,7 @@ h2 {
     margin: inherit;
     color: #474850;
     font-weight: 600;
-    width: 90%;
+    width: 80%;
     height: auto;
 }
 
@@ -45,7 +45,7 @@ h2 {
 #calcButton{
     width: 200px;
     height: 40px;
-    font-family: 'Lora', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     font-weight: 500;
     background: #0624F7;
@@ -57,7 +57,7 @@ h2 {
 }
 
 #buttonPanel {
-    width:90%;
+    width:80%;
     display: inline-block;
 }
 
