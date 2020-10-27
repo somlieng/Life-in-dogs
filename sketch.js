@@ -30,9 +30,10 @@ let darkBlue = "#00094A";
 let title;
 let subtitle;
 let buttonPanel;
-
-//responsive margins and shit
-let sideMargin = 40;
+let divHeight = 64;
+let breedLabel;
+let countryLabel;
+let ageLabel;
 
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
@@ -58,22 +59,35 @@ function setup() {
         //make subtitle
     buttonPanel = createDiv();
     buttonPanel.id('buttonPanel');
+    buttonPanel.size(AUTO,divHeight);
         //make div
+    breedLabel = createP('Dog breed:');
+    breedLabel.parent(buttonPanel);
+    breedLabel.class('labels');
+        //make breed selector label
     breedSelector = createSelect();
-    createDropdown(sideMargin,160,dogBreeds,breedSelector,121);
+    createDropdown(dogBreeds,breedSelector,121);
         //generate and customize breed selector
     currentAge = createInput(" ");
-    createInputField(currentAge,120,160);
+    createInputField(currentAge);
         //generate input field for age
+    ageLabel = createP('Current Age:');
+    ageLabel.parent(buttonPanel);
+    ageLabel.class('labels');
+        //make breed selector label
     countrySelector = createSelect();
-    createDropdown(160,160,lifeExpect,countrySelector,190);
+    createDropdown(lifeExpect,countrySelector,190);
         //generate and customize country selector
+    countryLabel = createP('Country of birth:');
+    countryLabel.parent(buttonPanel);
+    countryLabel.class('labels');
+        //make breed selector label
     femaleButton = createButton('Female','female');
     maleButton = createButton('Male','male');
-    genderButton(maleButton,femaleButton,240,160);
+    genderButton(maleButton,femaleButton);
         //make gender buttons
     calcButton = createButton('Calculate');
-    calcButtonCustomize(calcButton,sideMargin,200);
+    calcButtonCustomize(calcButton);
         //generate the calculate button
      reposition();
         //position elements
@@ -84,9 +98,37 @@ function reposition(){
     title.position(40,40);
     let titleSize = title.size().height;
     subtitle.position(40,titleSize+60);
-    let subtitleSize = subtitle.size().height+titleSize+60;
-    buttonPanel.position(40,subtitleSize+60);
-    breedSelector.position(buttonPanel.position.x)
+    let subtitleBottom = subtitle.position().y+subtitle.size().height;
+    buttonPanel.position(40,subtitleBottom+30);
+    inputRearrange();
+    let panelBottom = buttonPanel.position().y+buttonPanel.size().height;
+    calcButton.position(40,panelBottom+60);
+}
+
+function inputRearrange(){
+    
+    breedLabel.position(0,0)
+    breedSelector.position(0,24);
+    
+    let breedWidth = breedSelector.size().width;
+    
+    ageLabel.position(breedWidth+12,0);
+    currentAge.position(breedWidth+12,24);
+    
+    let ageX = currentAge.position().x;
+    let ageWidth = currentAge.size().width;
+    
+    countryLabel.position(ageX+ageWidth+12,0);
+    countrySelector.position(ageX+ageWidth+12,24);
+    
+    let countryWidth = countrySelector.size().width;
+    let countryX = countrySelector.position().x;
+    
+    let femaleWidth = femaleButton.size().width;
+    
+    femaleButton.position(countryX+countryWidth+12,24);
+    maleButton.position(countryX+countryWidth+12+femaleWidth,24);
+
 }
 
 //callback function for JSON call to create a new array of dog breed name and lifespan that we want
@@ -114,8 +156,7 @@ function windowResized (){
 }
 
 //customize dropdown
-function createDropdown(x,y,data,dropdown,num){
-    dropdown.position(x,y);
+function createDropdown(data,dropdown,num){
     for(let i = 0; i < Object.keys(data).length; i++){
      dropdown.option(data[i].name,i);   
     }
@@ -124,21 +165,18 @@ function createDropdown(x,y,data,dropdown,num){
 }
 
 //customize input field
-function createInputField(name,x,y){  
-    name.position(x,y);
+function createInputField(name){  
     name.parent(buttonPanel);
+    name.size(100,34);
 }
 
 //customize button
 function calcButtonCustomize(button,x,y){
-    button.position(x,y);
     button.mousePressed(calcDog);
     button.id('calcButton');
 }
 
-function genderButton(male,female,x,y){
-    female.position(x,y);
-    male.position(x+60,y);
+function genderButton(male,female){
     female.mousePressed(whichGender);
     male.mousePressed(whichGender);
     female.parent(buttonPanel);
