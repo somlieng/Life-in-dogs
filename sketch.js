@@ -34,6 +34,7 @@ let divHeight = 64;
 let breedLabel;
 let countryLabel;
 let ageLabel;
+let lineMargin;
 
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
@@ -90,6 +91,7 @@ function setup() {
     calcButtonCustomize(calcButton);
         //generate the calculate button
      reposition();
+    makeLine();
         //position elements
 }
 
@@ -103,6 +105,7 @@ function reposition(){
     buttonPanel.size(AUTO,divHeight);
     let panelBottom = buttonPanel.position().y+buttonPanel.size().height;
     calcButton.position(40,panelBottom+30);
+    makeLine();
 }
 
 function inputRearrange(){
@@ -167,6 +170,11 @@ function inputRearrange(){
         
     }
 
+}
+
+function makeLine(){
+    lineMargin = calcButton.size().height+calcButton.position().y+30;
+    line(40, lineMargin, windowWidth-40, lineMargin);
 }
 
 //callback function for JSON call to create a new array of dog breed name and lifespan that we want
@@ -234,6 +242,7 @@ function whichGender(){
 function calcDog(){
     clear();
     myDogNames = [];
+    makeLine();
     //reset old calculations
     
 //    text('Gender: '+gender+' Age: '+currentAge.value()+' Country: '+countrySelector.value()+' Dog Breed:'+breedSelector.value(),10,210);
@@ -242,8 +251,8 @@ function calcDog(){
 //    
 //    text('The life expectancy of a person born '+gender+' in '+lifeExpect[countrySelector.value()].name+' is '+floor(lifeExpect[countrySelector.value()][gender])+' years',10,290);
 //    
-//    lifeLeft = floor(lifeExpect[countrySelector.value()][gender]) - currentAge.value();
-//        //calculate how much time you have left, statistically
+    lifeLeft = floor(lifeExpect[countrySelector.value()][gender]) - currentAge.value();
+        //calculate how much time you have left, statistically
 //    
 //    text('Statistically, you have '+lifeLeft+' years left',10,330);
     
@@ -258,6 +267,17 @@ function calcDog(){
         myDogNames.push(dogNames.dog_names[floor(randName)]);
     }
         //generate name of dogs you might have
+    
+    let margin = lineMargin+30;
+    let canvasSize = windowWidth - 80;
+    
+    print("here1");
+    
+    for(i = 0; i < numdogs; i++){
+         print("here2");
+        fill(blue);
+        square((40*i)+40+(20*i), margin, windowWidth/numdogs);
+    }
     
 //    text('Here are some ideas for dog names: '+myDogNames,10,410);
 }
