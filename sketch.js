@@ -91,7 +91,6 @@ function setup() {
         //generate the calculate button
      reposition();
         //position elements
-    print(buttonPanel.position());
 }
 
 function reposition(){
@@ -102,7 +101,7 @@ function reposition(){
     buttonPanel.position(40,subtitleBottom+30);
     inputRearrange();
     let panelBottom = buttonPanel.position().y+buttonPanel.size().height;
-    calcButton.position(40,panelBottom+60);
+    calcButton.position(40,panelBottom+30);
 }
 
 function inputRearrange(){
@@ -127,7 +126,7 @@ function inputRearrange(){
     let femaleWidth = femaleButton.size().width;
     
     femaleButton.position(countryX+countryWidth+12,24);
-    maleButton.position(countryX+countryWidth+12+femaleWidth,24);
+    maleButton.position(countryX+countryWidth+12+femaleWidth-2,24);
 
 }
 
@@ -179,6 +178,8 @@ function calcButtonCustomize(button,x,y){
 function genderButton(male,female){
     female.mousePressed(whichGender);
     male.mousePressed(whichGender);
+    male.class('genderButton');
+    female.class('genderButton');
     female.parent(buttonPanel);
     male.parent(buttonPanel);
 }
@@ -196,21 +197,21 @@ function calcDog(){
     myDogNames = [];
     //reset old calculations
     
-    text('Gender: '+gender+' Age: '+currentAge.value()+' Country: '+countrySelector.value()+' Dog Breed:'+breedSelector.value(),10,210);
-    
-    text('Max life span of a '+dogBreeds[breedSelector.value()].name+' is '+dogBreeds[breedSelector.value()].lifespan+' years',10,250);
-    
-    text('The life expectancy of a person born '+gender+' in '+lifeExpect[countrySelector.value()].name+' is '+floor(lifeExpect[countrySelector.value()][gender])+' years',10,290);
-    
-    lifeLeft = floor(lifeExpect[countrySelector.value()][gender]) - currentAge.value();
-        //calculate how much time you have left, statistically
-    
-    text('Statistically, you have '+lifeLeft+' years left',10,330);
+//    text('Gender: '+gender+' Age: '+currentAge.value()+' Country: '+countrySelector.value()+' Dog Breed:'+breedSelector.value(),10,210);
+//    
+//    text('Max life span of a '+dogBreeds[breedSelector.value()].name+' is '+dogBreeds[breedSelector.value()].lifespan+' years',10,250);
+//    
+//    text('The life expectancy of a person born '+gender+' in '+lifeExpect[countrySelector.value()].name+' is '+floor(lifeExpect[countrySelector.value()][gender])+' years',10,290);
+//    
+//    lifeLeft = floor(lifeExpect[countrySelector.value()][gender]) - currentAge.value();
+//        //calculate how much time you have left, statistically
+//    
+//    text('Statistically, you have '+lifeLeft+' years left',10,330);
     
     numdogs = floor(lifeLeft/(dogBreeds[breedSelector.value()].lifespan));
         //how many dogs you can have until you die
     
-    text('Which means you can have '+numdogs+' more '+dogBreeds[breedSelector.value()].name+'s',10,370);
+//    text('Which means you can have '+numdogs+' more '+dogBreeds[breedSelector.value()].name+'s',10,370);
     
     for(i = 0; i < numdogs; i++){
         let rand = dogNames.dog_names.length;
@@ -219,5 +220,5 @@ function calcDog(){
     }
         //generate name of dogs you might have
     
-    text('Here are some ideas for dog names: '+myDogNames,10,410);
+//    text('Here are some ideas for dog names: '+myDogNames,10,410);
 }

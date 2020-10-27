@@ -20,6 +20,7 @@ h1 {
 h3 {
     font-family: 'Open Sans', sans-serif;
     font-size: 24px;
+    color: #00094A;
     width: 90%;
     height:auto;
     margin: inherit;
@@ -34,7 +35,6 @@ h3 {
     color: #00094A;
     margin:0 0.3em 0.3em 0;
     border-radius:1em;
-    box-sizing: border-box;
     border: 0.15em solid #00094A;
     display:inline-block;
 }
@@ -47,17 +47,29 @@ h3 {
 .labels {
     margin: 0;
     padding: 0;
+    color: #00094A;
     font-family: 'Open Sans', sans-serif; 
     font-size: 14px;
+}
+
+.genderButton{
+    height: 40px;
+    font-family: 'Open Sans', sans-serif; 
+    background: white;
+    color: #00094A;
+    width: 100px;
+    border: 0.1em solid #00094A;
 }
 
 select {
     height: 40px;
     position: relative;
     font-family: 'Open Sans', sans-serif; 
+    border: 0.1em solid #00094A;
 }
 
 input {
     position:relative;
     font-family: 'Open Sans', sans-serif;
+    border: 0.1em solid #00094A;
 }
