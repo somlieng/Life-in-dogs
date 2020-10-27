@@ -56,9 +56,9 @@ function setup() {
         //make title
     subtitle = createElement('h3', 'Please enter the breed of dog your would like to have, your current age, country of birth and sex at birth:');
         //make subtitle
-    reposition();
-        //position elements
     buttonPanel = createDiv();
+    buttonPanel.id('buttonPanel');
+        //make div
     breedSelector = createSelect();
     createDropdown(sideMargin,160,dogBreeds,breedSelector,121);
         //generate and customize breed selector
@@ -75,12 +75,18 @@ function setup() {
     calcButton = createButton('Calculate');
     calcButtonCustomize(calcButton,sideMargin,200);
         //generate the calculate button
+     reposition();
+        //position elements
+    print(buttonPanel.position());
 }
 
 function reposition(){
     title.position(40,40);
     let titleSize = title.size().height;
     subtitle.position(40,titleSize+60);
+    let subtitleSize = subtitle.size().height+titleSize+60;
+    buttonPanel.position(40,subtitleSize+60);
+    breedSelector.position(buttonPanel.position.x)
 }
 
 //callback function for JSON call to create a new array of dog breed name and lifespan that we want

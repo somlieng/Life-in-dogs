@@ -36,4 +36,10 @@ h3 {
     border-radius:1em;
     box-sizing: border-box;
     border: 0.15em solid #00094A;
+    display:inline-block;
+}
+
+#buttonPanel {
+    width:90%;
+    height:100px;
 }
