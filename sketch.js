@@ -50,7 +50,7 @@ function preload(){
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight); 
+    createCanvas(windowWidth, windowHeight*2); 
         //create canvas full window size
     background(255);
         //make background color

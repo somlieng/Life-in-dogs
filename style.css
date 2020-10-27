@@ -2,7 +2,7 @@ html, body {
     margin: 0 auto;
     position: relative;
     padding: 0;
-    overflow:scroll
+    overflow:auto;
 }
 
 canvas {
