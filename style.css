@@ -1,5 +1,6 @@
 html, body {
-  margin: 0;
+  margin: 0 auto;
+  position: relative;
   padding: 0;
 }
 
@@ -9,8 +10,30 @@ canvas {
 
 h1 {
     font-family: 'Lora', serif;
+    font-size: 60px;
+    margin: inherit;
+    color: #00094A;
+    width: 90%;
+    height: auto;
 }
 
 h3 {
     font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    width: 90%;
+    height:auto;
+    margin: inherit;
+}
+
+#calcButton{
+    width: 200px;
+    height: 40px;
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    background: white;
+    color: #00094A;
+    margin:0 0.3em 0.3em 0;
+    border-radius:1em;
+    box-sizing: border-box;
+    border: 0.15em solid #00094A;
 }

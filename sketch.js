@@ -31,6 +31,9 @@ let title;
 let subtitle;
 let buttonPanel;
 
+//responsive margins and shit
+let sideMargin = 40;
+
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
         //JSON url for dog names
@@ -50,14 +53,14 @@ function setup() {
     background(255);
         //make background color
     title = createElement('h1', 'How many more dogs can you have?');
-    titleCustom(title,40,40);
         //make title
     subtitle = createElement('h3', 'Please enter the breed of dog your would like to have, your current age, country of birth and sex at birth:');
-    titleCustom(subtitle,40,100);
         //make subtitle
+    reposition();
+        //position elements
     buttonPanel = createDiv();
     breedSelector = createSelect();
-    createDropdown(40,160,dogBreeds,breedSelector,121);
+    createDropdown(sideMargin,160,dogBreeds,breedSelector,121);
         //generate and customize breed selector
     currentAge = createInput(" ");
     createInputField(currentAge,120,160);
@@ -70,8 +73,14 @@ function setup() {
     genderButton(maleButton,femaleButton,240,160);
         //make gender buttons
     calcButton = createButton('Calculate');
-    calcButtonCustomize(calcButton,40,180);
+    calcButtonCustomize(calcButton,sideMargin,200);
         //generate the calculate button
+}
+
+function reposition(){
+    title.position(40,40);
+    let titleSize = title.size().height;
+    subtitle.position(40,titleSize+60);
 }
 
 //callback function for JSON call to create a new array of dog breed name and lifespan that we want
@@ -95,6 +104,7 @@ function getMaxLifespan(lifespan){
 //makes sure the window is resize automatically
 function windowResized (){
     resizeCanvas(windowWidth,windowHeight);
+    reposition();
 }
 
 //customize dropdown
@@ -104,17 +114,20 @@ function createDropdown(x,y,data,dropdown,num){
      dropdown.option(data[i].name,i);   
     }
     dropdown.selected(data[num].name,num);
+    dropdown.parent(buttonPanel);
 }
 
 //customize input field
 function createInputField(name,x,y){  
     name.position(x,y);
+    name.parent(buttonPanel);
 }
 
 //customize button
 function calcButtonCustomize(button,x,y){
     button.position(x,y);
     button.mousePressed(calcDog);
+    button.id('calcButton');
 }
 
 function genderButton(male,female,x,y){
@@ -122,6 +135,8 @@ function genderButton(male,female,x,y){
     male.position(x+60,y);
     female.mousePressed(whichGender);
     male.mousePressed(whichGender);
+    female.parent(buttonPanel);
+    male.parent(buttonPanel);
 }
 
 function titleCustom(title,x,y){
