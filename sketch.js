@@ -43,6 +43,7 @@ let dogYears;
 //measurements
 let divHeight = 64;
 let sidemargin = 80;
+let summaryMargin;
 
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
@@ -118,7 +119,8 @@ function reposition(){
     makeLine();
     if(summaryText){
         summaryText.position(80,lineMargin+40);
-        summaryText.size(windowWidth-sidemargin*2);   
+        summaryText.size(windowWidth-sidemargin*2);
+        makeLine2();
     }
 }
 
@@ -211,7 +213,7 @@ function getMaxLifespan(lifespan){
 
 //makes sure the window is resize automatically
 function windowResized (){
-    resizeCanvas(windowWidth,windowHeight);
+    resizeCanvas(windowWidth,windowHeight+summaryText.size().height);
     reposition();
 }
 
@@ -259,13 +261,8 @@ function calcDog(){
     }
     clear();
     myDogNames = [];
-    makeLine();
     //reset old calculations
     
-//    text('Gender: '+gender+' Age: '+currentAge.value()+' Country: '+countrySelector.value()+' Dog Breed:'+breedSelector.value(),10,210);
-//    
-//    text('Max life span of a '+dogBreeds[breedSelector.value()].name+' is '+dogBreeds[breedSelector.value()].lifespan+' years',10,250);
-//   
     country = lifeExpect[countrySelector.value()].name;
     expectancy = floor(lifeExpect[countrySelector.value()][gender]);
     breed = dogBreeds[breedSelector.value()].name;
@@ -291,7 +288,15 @@ function calcDog(){
     summaryText = createElement('h2', 'You can have '+numdogs+' more '+breed+'s! '+breed+'s live up to '+dogYears+' years. Your life expectancy as a born '+gender+' in '+country+' is '+expectancy+' years. Which means you have around '+lifeLeft+' years to play with your dogs. Enjoy!');
     summaryText.position(80,lineMargin+40);
     summaryText.size(windowWidth-sidemargin*2);
-    //    text('The life expectancy of a person born '+gender+' in '+lifeExpect[countrySelector.value()].name+' is '+floor(lifeExpect[countrySelector.value()][gender])+' years',10,290);
+    //summary text
+    
+    resizeCanvas(windowWidth,windowHeight+summaryText.size().height);
+    //resize canvas
+    
+    makeLine();
+    makeLine2();
+    //line separator
+    
 //    
     
 //    let margin = lineMargin+30;
@@ -306,4 +311,9 @@ function calcDog(){
 //    }
     
 //    text('Here are some ideas for dog names: '+myDogNames,10,410);
+}
+
+function makeLine2(){
+    summaryMargin = summaryText.position().y+summaryText.size().height+40;
+    line(sidemargin, summaryMargin, windowWidth-sidemargin, summaryMargin);
 }
