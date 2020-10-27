@@ -37,6 +37,9 @@ let ageLabel;
 let lineMargin;
 let country;
 let expectancy;
+let breed;
+let summaryText;
+let dogYears;
 
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
@@ -108,6 +111,9 @@ function reposition(){
     let panelBottom = buttonPanel.position().y+buttonPanel.size().height;
     calcButton.position(40,panelBottom+30);
     makeLine();
+    if(summaryText){
+     summaryText.position(40,lineMargin+30);   
+    }
 }
 
 function inputRearrange(){
@@ -253,6 +259,8 @@ function calcDog(){
 //   
     country = lifeExpect[countrySelector.value()].name;
     expectancy = floor(lifeExpect[countrySelector.value()][gender]);
+    breed = dogBreeds[breedSelector.value()].name;
+    dogYears = dogBreeds[breedSelector.value()].lifespan;
 
     lifeLeft = floor(lifeExpect[countrySelector.value()][gender]) - currentAge.value();
         //calculate how much time you have left, statistically
@@ -271,9 +279,8 @@ function calcDog(){
     }
         //generate name of dogs you might have
     
-    let lifeText = createElement('h2', 'Your life expectancy in '+country+' is '+expectancy+' years');
-    lifeText.position(40,lineMargin+30);
-    
+    summaryText = createElement('h2', 'You can have '+numdogs+' more '+breed+'s! '+breed+'s live up to '+dogYears+' years. Your life expectancy as a born '+gender+' in '+country+' is '+expectancy+' years. Which means you have around '+lifeLeft+' years to play with your dogs. Enjoy!');
+    summaryText.position(40,lineMargin+30);
     //    text('The life expectancy of a person born '+gender+' in '+lifeExpect[countrySelector.value()].name+' is '+floor(lifeExpect[countrySelector.value()][gender])+' years',10,290);
 //    
     
