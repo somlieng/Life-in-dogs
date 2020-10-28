@@ -50,6 +50,8 @@ let summaryMargin;
 let withinCanvas;
 let line2Margin = 64;
 let dogTextMargin;
+let dogImg;
+let dogPicSize = 100;
 
 function preload(){
     let dogNameURL = "https://raw.githubusercontent.com/dariusk/corpora/master/data/animals/dog_names.json";
@@ -65,7 +67,7 @@ function preload(){
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight*2); 
+    createCanvas(windowWidth, windowHeight+80); 
         //create canvas full window size
     background(255);
         //make background color
@@ -101,6 +103,8 @@ function setup() {
     countryLabel.class('labels');
         //make breed selector label
     femaleButton = createButton('Female','female');
+    femaleButton.style('background-color',blue);
+    femaleButton.style('color','white');
     maleButton = createButton('Male','male');
     genderButton(maleButton,femaleButton);
         //make gender buttons
@@ -132,11 +136,13 @@ function reposition(){
     makeLine();
     
     if(summaryText){
+        //makeDogImages();
         summaryText.position(80,lineMargin+40);
         summaryText.size(windowWidth-sidemargin*2);
         makeLine2();
         dogText.position(80,line2Margin);
         dogText.size(windowWidth-sidemargin*2);
+        dogTextMargin = dogText.position().y+dogText.size().height;
         dogListPosition();
     }
 }
@@ -230,10 +236,6 @@ function getMaxLifespan(lifespan){
 
 //makes sure the window is resize automatically
 function windowResized (){
-//    if(summaryText){
-////        resizeCanvas(windowWidth,windowHeight+summaryText.size().height+200);
-//        resizeCanvas(windowWidth,windowHeight+summaryText.size().height+500);
-//    }
     resizeCanvas(windowWidth,windowHeight*2);
     reposition();
 }
@@ -274,18 +276,35 @@ function titleCustom(title,x,y){
 
 function whichGender(){
     gender = this.value();
-    this.style('backgroun-color',blue);
-    this.style('color','white');
+    if(gender === 'female'){
+        femaleButton.style('background-color',blue);
+        femaleButton.style('color','white');
+        maleButton.style('background-color','white');
+        maleButton.style('color',darkBlue);
+    }
+    if(gender === 'male'){
+        maleButton.style('background-color',blue);
+        maleButton.style('color','white');
+        femaleButton.style('background-color','white');
+        femaleButton.style('color',darkBlue);
+    }
 }
 
 function calcDog(){
-    if(summaryText){
-     summaryText.remove();
-     dogText.remove();
-    }
     clear();
+    if(summaryText){
+        summaryText.remove();
+        dogText.remove();
+        
+        for(let name of displayDog){
+            name.remove();
+        }
+        
+    }
     myDogNames = [];
+    displayDog = [];
     makeLine();
+    resizeCanvas(windowWidth,windowHeight*2);
     //reset old calculations
     
     country = lifeExpect[countrySelector.value()].name;
@@ -300,6 +319,8 @@ function calcDog(){
     
     numdogs = floor(lifeLeft/(dogBreeds[breedSelector.value()].lifespan));
         //how many dogs you can have until you die
+    dogPicSize = (withinCanvas-40)/numdogs;
+        //size of dog pictures
     
 //    text('Which means you can have '+numdogs+' more '+dogBreeds[breedSelector.value()].name+'s',10,370);
     
@@ -310,6 +331,9 @@ function calcDog(){
     }
         //generate name of dogs you might have
     
+//    let dogpicmargin = dogPicSize+40;
+//    makeDogImages();
+    
     summaryText = createElement('h2', 'You can have '+numdogs+' more '+breed+'s! '+breed+'s live up to '+dogYears+' years. Your life expectancy as a born '+gender+' in '+country+' is '+expectancy+' years. Which means you have around '+lifeLeft+' years to play with your dogs. Enjoy!');
     summaryText.position(80,lineMargin+40);
     summaryText.size(windowWidth-sidemargin*2);
@@ -318,7 +342,6 @@ function calcDog(){
     summaryMargin = summaryText.position().y+summaryText.size().height+40;
     
     line2Margin = summaryText.position().y+summaryText.size().height+80;
-    resizeCanvas(windowWidth,windowHeight+summaryText.size().height*3);
     
      dogText = createElement('h3', 'Here are some ideas for dog names:');
      dogText.position(80,line2Margin);
@@ -330,12 +353,9 @@ function calcDog(){
     makeLine2();
     //line separator
     
-    dogList = createDiv();
-    dogList.id('dogList');
-    
     for(i = 0; i < numdogs; i++){
         let temp = createElement('p',(i+1)+'. '+myDogNames[i]);
-        temp.parent('dogList');
+        //temp.parent('dogList');
         displayDog.push(temp);
     }
     
@@ -345,10 +365,17 @@ function calcDog(){
 }
 
 function dogListPosition(){
-   dogTextMargin = dogText.position().y+dogText.size().height;
-    dogList.position(80,dogTextMargin);
+    
     for(i = 0; i < numdogs; i++){
-        displayDog.position(0,(40*i));
+        //displayDog[i].parent('dogList');
+        displayDog[i].position(80,dogTextMargin+(40*i));
+        print("what the fuck");
+    }
+}
+
+function makeDogImages(){
+    for(i = 0; i < numdogs; i++){
+        square(80+(dogPicSize*i),lineMargin+40,dogPicSize);
     }
 }
 

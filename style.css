@@ -2,7 +2,7 @@ html, body {
     margin: 0 auto;
     position: relative;
     padding: 0;
-    overflow:auto;
+    overflow-y:scroll;
 }
 
 canvas {
@@ -34,10 +34,6 @@ h2 {
     font-weight: 600;
     width: 80%;
     height: auto;
-}
-
-#bold{
-    color: #2f3668;
 }
 
 #calcButton{
@@ -80,15 +76,21 @@ h2 {
 p {
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
+    color: #00094A;
 }
 
 .genderButton{
     height: 40px;
     font-family: 'Open Sans', sans-serif; 
+    font-size: 16px;
     background: white;
     color: #00094A;
     width: 100px;
     border: 0.1em solid #00094A;
+}
+
+.genderButton:hover{
+    cursor:pointer;
 }
 
 select {
@@ -96,10 +98,20 @@ select {
     position: relative;
     font-family: 'Open Sans', sans-serif; 
     border: 0.1em solid #00094A;
+    cursor: pointer;
+}
+
+select:hover{
+    border: 0.1em solid #0624F7;
 }
 
 input {
     position:relative;
     font-family: 'Open Sans', sans-serif;
     border: 0.1em solid #00094A;
+    cursor: inherit;
+}
+
+input:hover{
+    border: 0.1em solid #0624F7;
 }
