@@ -15,7 +15,6 @@ h1 {
     font-weight: 600;
     margin: inherit;
     color: #00094A;
-    width: 80%;
     height: auto;
 }
 
@@ -23,7 +22,6 @@ h3 {
     font-family: 'Open Sans', sans-serif;
     font-size: 24px;
     color: #474850;
-    width: 80%;
     height:auto;
     margin: inherit;
 }
@@ -56,7 +54,17 @@ h2 {
     display:inline-block;
 }
 
-#buttonPanel {
+#calcButton:hover{
+    background: white;
+    color: #0624F7;
+    border-color: #0624F7;
+    border: 0.15em solid #0624F7;
+    margin:0 0.3em 0.3em 0;
+    border-radius:1em;
+    display:inline-block;
+}
+
+#buttonPanel, #dogList {
     width:80%;
     display: inline-block;
 }
@@ -67,6 +75,11 @@ h2 {
     color: #00094A;
     font-family: 'Open Sans', sans-serif; 
     font-size: 14px;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
 }
 
 .genderButton{
